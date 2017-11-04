@@ -12,11 +12,8 @@
   crossorigin="anonymous"></script>
 <script type="text/javascript">
   var array = []
-  var header2 = ['42', '4d', '38', 'c0', 00, 00, 00, 00, 00, 00, 36, 00, 00, 00, 28, 00, 00, 00, 80, 00, 00, 00, 80, 00, 00, 00, 01, 00, 18, 00, 00, 00, 00, 00, 02, 'c0', 00, 00, 'c3', '0e', 00, 00, 'c3', '0e', 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-  var header1 = [66, 77, 54, 194, 128, 00, 00, 00, 00, 00, 00, 54, 0, 0, 0, 40, 0, 0, 0, 194, 128, 0, 0, 0, 194, 128, 0, 0, 0, 1, 0, 16, 0, 0, 0, 0, 0, 0, 194, 128, 0, 0, 19, 11, 0, 0, 19, 11, 0, 0, 0, 0, 0, 0]
+
 function conv(arg) {
-    console.log("old"+String.fromCharCode(arg&0xff))
-    console.log(String.fromCharCode(arg&0xff, (arg>>8)&0xff, (arg>>16)&0xff, (arg>>24)&0xff))
     return String.fromCharCode(arg&0xff, (arg>>8)&0xff, (arg>>16)&0xff, (arg>>24)&0xff);
   }
   var header= "BM"
@@ -41,6 +38,8 @@ function conv(arg) {
   header += conv(height&0xff)
   header += conv(width&0xff)
   header += String.fromCharCode(colorPanes, 0)
+  console.log(String.fromCharCode(colorPanes, 0))
+  console.log(String.fromCharCode(colorPanes, 0))
   header += String.fromCharCode(bitsPerPixel, 0)
   header += conv(compression&0xff)
   header += conv(size&0xff)
@@ -48,33 +47,11 @@ function conv(arg) {
   header += conv(vRes&0xff)
   header += String.fromCharCode(colorPalette&0xff)
   header += String.fromCharCode(importantColors&0xff)
-  // header += String.fromCharCode(bmpSize&0xff)
-  // header += String.fromCharCode(unused&0xff)
-  // header += String.fromCharCode(offset&0xff)
-  // header += String.fromCharCode(headerLength&0xff)
-  // header += String.fromCharCode(height&0xff)
-  // header += String.fromCharCode(width&0xff)
-  // header += String.fromCharCode(colorPanes, 0)
-  // header += String.fromCharCode(bitsPerPixel, 0)
-  // header += String.fromCharCode(compression&0xff)
-  // header += String.fromCharCode(size&0xff)
-  // header += String.fromCharCode(hRes&0xff)
-  // header += String.fromCharCode(vRes&0xff)
-  // header += String.fromCharCode(colorPalette&0xff)
-  // header += String.fromCharCode(importantColors&0xff)
-  console.log(header)
+
   
-  
-  
-  // for (var i = 0; i < header.length; i++) {
-  //   console.log(String.fromCharCode(header[i]&0xff))
-  // }
-  // console.log(header.length)
-  // console.log(String.fromCharCode.apply(String, header))
-  // var convHeader = String.fromCharCode.apply(String, header)
-  // console.log(convHeader)
 
 
+// randomness set up already for the same results
   
   // $.get("https://www.random.org/integers/?num=32768&min=0&max=255&col=1&base=10&format=plain&rnd=new", function(tastyData){
   //   var deStringed = tastyData.split(/\r?\n/)
@@ -87,18 +64,18 @@ function conv(arg) {
   array[i] = Math.floor(Math.random()*256);
   
   }
-  // console.log(String.fromCharCode.apply(String, header))
+ 
   
   header += (String.fromCharCode.apply(String, array))
 
  
   console.log(header) 
-  //Image element
+
   var image = document.createElement('img');
 
   image.src = 'data:image/bmp;base64,' + btoa(header);
   $('#prettyPictures').append(image)
-// })
+
 </script>
 </body>
 </html>
