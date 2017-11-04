@@ -10,49 +10,49 @@
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
-<script type="text/javascript">
-  var array = []
+  <script type="text/javascript">
+    var array = []
 
-function conv(arg) {
-    return String.fromCharCode(arg&0xff, (arg>>8)&0xff, (arg>>16)&0xff, (arg>>24)&0xff);
-  }
-  var header= "BM"
-  var bmpSize = 5432768
-  var unused = 0
-  var offset = 54
-  var headerLength = 40
-  var height = 128
-  var width = 128
-  var colorPanes = 1
-  var bitsPerPixel = 16
-  var compression = 0
-  var size = 32768
-  var hRes = 2835
-  var vRes = 2835
-  var colorPalette = 0
-  var importantColors = 0
-  header += conv(bmpSize&0xff)
-  header += conv(unused&0xff)
-  header += conv(offset&0xff)
-  header += conv(headerLength&0xff)
-  header += conv(height&0xff)
-  header += conv(width&0xff)
-  header += String.fromCharCode(colorPanes, 0)
-  console.log(String.fromCharCode(colorPanes, 0))
-  console.log(String.fromCharCode(colorPanes, 0))
-  header += String.fromCharCode(bitsPerPixel, 0)
-  header += conv(compression&0xff)
-  header += conv(size&0xff)
-  header += conv(hRes&0xff)
-  header += conv(vRes&0xff)
-  header += String.fromCharCode(colorPalette&0xff)
-  header += String.fromCharCode(importantColors&0xff)
+    function conv(arg) {
+      return String.fromCharCode(arg&0xff, (arg>>8)&0xff, (arg>>16)&0xff, (arg>>24)&0xff);
+    }
 
-  
+    var header= "BM"
+    var bmpSize = 5432768
+    var unused = 0
+    var offset = 54
+    var headerLength = 40
+    var height = 128
+    var width = 128
+    var colorPanes = 1
+    var bitsPerPixel = 16
+    var compression = 0
+    var size = 32768
+    var hRes = 2835
+    var vRes = 2835
+    var colorPalette = 0
+    var importantColors = 0
+
+    header += conv(bmpSize)
+    header += conv(unused)
+    header += conv(offset)
+    header += conv(headerLength)
+    header += conv(height)
+    header += conv(width)
+    header += String.fromCharCode(colorPanes, 0)
+    header += String.fromCharCode(bitsPerPixel, 0)
+    header += conv(compression)
+    header += conv(size)
+    header += conv(hRes)
+    header += conv(vRes)
+    header += String.fromCharCode(colorPalette)
+    header += String.fromCharCode(importantColors)
 
 
-// randomness set up already for the same results
-  
+
+
+  // randomness set up already for the same results
+
   // $.get("https://www.random.org/integers/?num=32768&min=0&max=255&col=1&base=10&format=plain&rnd=new", function(tastyData){
   //   var deStringed = tastyData.split(/\r?\n/)
   // for (var i = 0; i < deStringed.length; i++) {
@@ -61,14 +61,14 @@ function conv(arg) {
 
 
   for (array= [], i = 0; i < 32768; i++) {
-  array[i] = Math.floor(Math.random()*256);
-  
+    array[i] = Math.floor(Math.random()*256);
+
   }
- 
+
   
   header += (String.fromCharCode.apply(String, array))
 
- 
+
   console.log(header) 
 
   var image = document.createElement('img');
